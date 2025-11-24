@@ -1,4 +1,3 @@
-import React from 'react'
 import { AccessibilityProvider } from './contexts/AccessibilityContext'
 
 // Components

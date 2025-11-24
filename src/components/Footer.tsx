@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, MessageCircle, Mail, Clock, Users, Award, Heart } from 'lucide-react'
+import { MapPin, Phone, MessageCircle, Clock, Users, Award, Heart } from 'lucide-react'
 import logoImage from '../assets/profil.jpg'
 
 const Footer: React.FC = () => {
