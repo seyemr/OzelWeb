@@ -17,7 +17,7 @@ const ServicesSection: React.FC = () => {
   const services = [
     {
       icon: Users,
-      title: "🦯 Rehberlik ve Yön Bulma Eğitimi",
+      title: "🦯 Rehberlik ve Yönlendirme Eğitimi",
       description: "Güvenli şekilde refakatçiyle hareket etmeyi öğretir. Rehber tutuş pozisyonları, kapı geçişleri, merdiven çıkma/iniş, dar alanlardan geçiş ve kalabalıkta güvenli hareket teknikleri.",
       amaç: "Bireyin güvenli bir şekilde refakatçi ile hareket etmesini sağlamak",
       içerik: "• Rehber tutuş pozisyonları\n• Kapı geçişleri\n• Merdiven çıkma ve iniş teknikleri\n• Dar alanlardan geçiş\n• Kalabalıkta güvenli hareket",
@@ -151,9 +151,9 @@ const ServicesSection: React.FC = () => {
         </motion.div>
 
         {/* Bootstrap Carousel for Services */}
-        <div id="servicesCarousel" className="carousel slide max-w-5xl mx-auto" data-bs-ride="carousel" data-bs-interval="8000">
+        <div id="servicesCarousel" className="carousel slide max-w-4xl mx-auto" data-bs-ride="carousel" data-bs-interval="6000">
           {/* Carousel Indicators */}
-          <div className="carousel-indicators mb-8 d-flex justify-content-center gap-2" style={{position: 'relative', bottom: 'auto', marginTop: '2rem'}}>
+          <div className="carousel-indicators mb-8" style={{position: 'relative', bottom: 'auto', marginTop: '2rem'}}>
             {services.map((_, index) => (
               <button
                 key={index}
@@ -162,16 +162,14 @@ const ServicesSection: React.FC = () => {
                 data-bs-slide-to={index}
                 className={index === 0 ? 'active' : ''}
                 aria-current={index === 0 ? 'true' : 'false'}
-                aria-label={`Eğitim ${index + 1}: ${services[index].title}`}
-                title={services[index].title}
+                aria-label={`Eğitim ${index + 1}`}
                 style={{
-                  width: '14px',
-                  height: '14px',
+                  width: '12px',
+                  height: '12px',
                   borderRadius: '50%',
                   backgroundColor: index === 0 ? '#3b82f6' : '#cbd5e1',
-                  border: '2px solid #fff',
-                  margin: '0',
-                  cursor: 'pointer'
+                  border: 'none',
+                  margin: '0 6px'
                 }}
               />
             ))}
@@ -185,7 +183,7 @@ const ServicesSection: React.FC = () => {
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className={`group relative ${service.bgColor} border-2 ${service.borderColor} rounded-3xl p-6 md:p-8 mx-2 md:mx-8 hover:shadow-2xl transition-all duration-500`}
+                  className={`group relative ${service.bgColor} border-2 ${service.borderColor} rounded-3xl p-8 mx-4 hover:shadow-2xl transition-all duration-500`}
                 >
                   {/* Background Pattern */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-3xl"></div>
@@ -246,154 +244,94 @@ const ServicesSection: React.FC = () => {
             ))}
           </div>
 
-          {/* Carousel Controls - Responsive */}
+          {/* Carousel Controls */}
           <button
-            className="carousel-control-responsive prev"
+            className="carousel-control-prev"
             type="button"
             data-bs-target="#servicesCarousel"
             data-bs-slide="prev"
+            style={{left: '-60px'}}
           >
-            <span className="control-icon" aria-hidden="true">
+            <span 
+              className="bg-blue-600 text-white rounded-full p-3 shadow-lg hover:bg-blue-700 transition-colors" 
+              aria-hidden="true"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '50px',
+                height: '50px',
+                backgroundImage: 'none',
+                fontSize: '24px',
+                fontWeight: 'bold'
+              }}
+            >
               ‹
             </span>
             <span className="visually-hidden">Önceki</span>
           </button>
           <button
-            className="carousel-control-responsive next"
+            className="carousel-control-next"
             type="button"
             data-bs-target="#servicesCarousel"
             data-bs-slide="next"
+            style={{right: '-60px'}}
           >
-            <span className="control-icon" aria-hidden="true">
+            <span 
+              className="bg-blue-600 text-white rounded-full p-3 shadow-lg hover:bg-blue-700 transition-colors" 
+              aria-hidden="true"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '50px',
+                height: '50px',
+                backgroundImage: 'none',
+                fontSize: '24px',
+                fontWeight: 'bold'
+              }}
+            >
               ›
             </span>
             <span className="visually-hidden">Sonraki</span>
           </button>
-          
-          {/* Mobile Navigation Buttons */}
-          <div className="d-block d-sm-none mt-4 text-center">
-            <button
-              type="button"
-              data-bs-target="#servicesCarousel"
-              data-bs-slide="prev"
-              className="btn btn-outline-primary btn-sm me-3 px-4 py-2"
-            >
-              ← Önceki
-            </button>
-            <button
-              type="button"
-              data-bs-target="#servicesCarousel"
-              data-bs-slide="next"
-              className="btn btn-outline-primary btn-sm px-4 py-2"
-            >
-              Sonraki →
-            </button>
-          </div>
         </div>
 
-        {/* Modern Call to Action */}
+        {/* Call to Action */}
         <motion.div
-          initial={{ y: 60, opacity: 0 }}
+          initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="relative mt-20"
+          transition={{ delay: 0.6 }}
+          className="text-center mt-16"
         >
-          {/* Background with gradient */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-3xl shadow-2xl">
-            {/* Animated background pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-              <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{animationDelay: '2s'}}></div>
-              <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{animationDelay: '4s'}}></div>
-            </div>
-            
-            {/* Content */}
-            <div className="relative z-10 px-8 py-12 text-center">
-              {/* Icon */}
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8, type: "spring", stiffness: 100 }}
-                className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/30"
+          <div className="bg-white rounded-3xl shadow-xl p-8 border-2 border-blue-100">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Hizmetlerimiz Hakkında Daha Fazla Bilgi Almak İster Misiniz?
+            </h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Uzman eğitmen kadromuzla size en uygun eğitim programını belirlemek için 
+              iletişime geçin. Ücretsiz değerlendirme görüşmesi için hemen arayın.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.a
+                href="tel:+905337035145"
+                className="btn-primary inline-flex items-center gap-3"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <MessageCircle className="w-10 h-10 text-white" />
-              </motion.div>
-              
-              {/* Title */}
-              <motion.h3 
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1, duration: 0.6 }}
-                className="text-3xl md:text-4xl font-bold text-white mb-4"
+                <Phone className="w-5 h-5" />
+                Hemen Ara
+              </motion.a>
+              <motion.a
+                href="https://wa.me/905337035145"
+                className="btn-secondary inline-flex items-center gap-3"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Bizimle İletişime Geçin! 🌟
-              </motion.h3>
-              
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.2, duration: 0.6 }}
-                className="text-lg text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed"
-              >
-                <p className="mb-3">
-                  <span className="font-semibold text-white">Uzman eğitmen kadromuz</span> ile size en uygun eğitim programını belirleyelim.
-                </p>
-                <p className="text-base">
-                  📋 <strong className="text-white">Kişiye özel plan</strong> • 🤝 <strong className="text-white">Profesyonel destek</strong> • ✨ <strong className="text-white">Uzman kadro</strong>
-                </p>
-              </motion.div>
-              
-              {/* Action Buttons */}
-              <motion.div
-                initial={{ y: 40, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.4, duration: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              >
-                <motion.a
-                  href="tel:+905337035145"
-                  className="group relative bg-white text-blue-700 font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-3 min-w-[200px] justify-center"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="relative z-10 flex items-center gap-3">
-                    <Phone className="w-5 h-5 group-hover:animate-bounce" />
-                    <span>📞 Hemen Ara</span>
-                  </div>
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0.5 bg-white rounded-2xl group-hover:bg-white/90 transition-colors duration-300"></div>
-                </motion.a>
-                
-                <motion.a
-                  href="https://wa.me/905337035145"
-                  className="group relative bg-green-500 text-white font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-3 min-w-[200px] justify-center hover:bg-green-600"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <MessageCircle className="w-5 h-5 group-hover:animate-pulse" />
-                  <span>💬 WhatsApp</span>
-                  
-                  {/* Animated border */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-                </motion.a>
-              </motion.div>
-              
-              {/* Additional Info */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.6, duration: 0.6 }}
-                className="mt-8 text-sm text-blue-200"
-              >
-                <p>⏰ <strong>7/24 Destek Hattı</strong> | 🚀 <strong>Hızlı Geri Dönüş</strong> | 🎓 <strong>15+ Yıl Deneyim</strong></p>
-              </motion.div>
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp Mesaj
+              </motion.a>
             </div>
           </div>
         </motion.div>

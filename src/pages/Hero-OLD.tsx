@@ -181,7 +181,7 @@ const HeroSection: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.button 
-                className="group relative bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-2xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center gap-3 min-w-[250px] justify-center overflow-hidden"
+                className="group relative bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-2xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center gap-3 min-w-[250px] justify-center"
                 onClick={() => {
                   const element = document.getElementById('iletisim')
                   if (element) {
@@ -192,12 +192,18 @@ const HeroSection: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Eye className="w-5 h-5 group-hover:animate-pulse relative z-10" />
-                <span className="relative z-10">Hemen İletişime Geçin</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                <Eye className="w-5 h-5 group-hover:animate-pulse" />
+                <span>Hemen İletişime Geçin</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 
                 {/* Animated background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0.5 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl group-hover:from-blue-700 group-hover:to-blue-800"></div>
+                <span className="relative z-10 flex items-center gap-3">
+                  <Eye className="w-5 h-5 group-hover:animate-pulse" />
+                  Hemen İletişime Geçin
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
               </motion.button>
               
               <motion.button 
@@ -216,7 +222,7 @@ const HeroSection: React.FC = () => {
                 <span>Hizmetleri Keşfet</span>
                 <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
               </motion.button>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Column - Modern Visual Elements */}

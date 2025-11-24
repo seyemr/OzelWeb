@@ -120,35 +120,83 @@ Lütfen uygun olan randevu saatlerinizi paylaşır mısınız?`
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          {/* Header */}
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, type: "spring" }}
-              className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
-            >
-              <MessageCircle className="w-8 h-8 text-white" />
-            </motion.div>
+          {/* Modern Header with Gradient Background */}
+          <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-700 to-cyan-800 rounded-3xl shadow-2xl mb-16">
+            {/* Animated background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+              <div className="absolute top-0 -right-4 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{animationDelay: '2s'}}></div>
+              <div className="absolute -bottom-8 left-20 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{animationDelay: '4s'}}></div>
+            </div>
             
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Randevu <span className="text-gradient">Talebinizi</span> Iletin
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Size en uygun eğitim programını belirlemek için uzman eğitmenlerimizle 
-              ücretsiz değerlendirme görüşmesi planlayın.
-            </p>
+            <div className="relative z-10 text-center px-8 py-16">
+              {/* Animated Icon */}
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+                className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/30"
+              >
+                <MessageCircle className="w-10 h-10 text-white" />
+              </motion.div>
+              
+              {/* Title */}
+              <motion.h2 
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-4xl md:text-5xl font-bold text-white mb-6"
+              >
+                Randevu Talebinizi İletin! 📅
+              </motion.h2>
+              
+              {/* Description */}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="text-lg text-emerald-100 max-w-3xl mx-auto leading-relaxed"
+              >
+                <p className="mb-4">
+                  <span className="font-semibold text-white">Uzman eğitmenlerimizle</span> size en uygun eğitim programını belirlemek için 
+                  ücretsiz değerlendirme görüşmesi planlayın.
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm border border-white/30">
+                    🆓 Ücretsiz Değerlendirme
+                  </span>
+                  <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm border border-white/30">
+                    👨‍🏫 Uzman Eğitmenler
+                  </span>
+                  <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm border border-white/30">
+                    📋 Kişiye Özel Program
+                  </span>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
-          {/* Form Card */}
+          {/* Modern Form Card */}
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            initial={{ y: 50, opacity: 0, scale: 0.95 }}
+            whileInView={{ y: 0, opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden"
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100/50 overflow-hidden hover:shadow-3xl transition-all duration-500"
           >
+            {/* Card Header with Gradient */}
+            <div className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 lg:px-12 py-6">
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white">Randevu Formu</h3>
+              </div>
+            </div>
+            
             <div className="p-8 lg:p-12">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field */}
@@ -158,25 +206,28 @@ Lütfen uygun olan randevu saatlerinizi paylaşır mısınız?`
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 }}
                 >
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Ad Soyad *
+                  <label htmlFor="name" className="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-3">
+                    <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                      <Users className="w-3 h-3 text-white" />
+                    </div>
+                    👤 Ad Soyad *
                   </label>
-                  <div className="relative">
+                  <div className="relative group">
                     <input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-4 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-5 py-4 pr-12 bg-gradient-to-r from-gray-50 to-gray-100/50 border-2 rounded-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white group-hover:bg-white ${
                         errors.name 
-                          ? 'border-red-300 bg-red-50' 
-                          : 'border-gray-200 hover:border-gray-300 focus:border-blue-500'
+                          ? 'border-red-300 bg-red-50 focus:ring-red-500/20 focus:border-red-500' 
+                          : 'border-gray-200 hover:border-blue-300'
                       }`}
                       placeholder="Adınız ve soyadınızı giriniz"
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                      <Users className={`w-5 h-5 ${errors.name ? 'text-red-400' : 'text-gray-400'}`} />
+                      <Users className={`w-5 h-5 transition-colors ${errors.name ? 'text-red-400' : 'text-gray-400 group-hover:text-blue-500'}`} />
                     </div>
                   </div>
                   {errors.name && (
@@ -314,40 +365,86 @@ Lütfen uygun olan randevu saatlerinizi paylaşır mısınız?`
                   </p>
                 </motion.div>
 
-                {/* Submit Button */}
+                {/* Modern Submit Button */}
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
+                  initial={{ y: 30, opacity: 0, scale: 0.9 }}
+                  whileInView={{ y: 0, opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.8 }}
-                  className="pt-4"
+                  transition={{ delay: 0.8, type: "spring" }}
+                  className="pt-8"
                 >
+                  {/* Main Submit Button */}
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`w-full py-4 px-8 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:from-green-600 hover:to-green-700'
+                    className={`group relative w-full py-5 px-8 bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden ${
+                      isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:from-green-600 hover:via-emerald-700 hover:to-teal-700'
                     }`}
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Gönderiliyor...
-                      </>
-                    ) : (
-                      <>
-                        <MessageCircle className="w-5 h-5" />
-                        WhatsApp ile Randevu Talep Et
-                        <ChevronRight className="w-5 h-5" />
-                      </>
-                    )}
+                    {/* Animated background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Button content */}
+                    <div className="relative z-10 flex items-center gap-3">
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin" />
+                          <span className="text-lg">Gönderiliyor...</span>
+                        </>
+                      ) : (
+                        <>
+                          <MessageCircle className="w-6 h-6 group-hover:animate-pulse" />
+                          <span className="text-lg">💬 WhatsApp ile Randevu Talep Et</span>
+                          <motion.div
+                            className="group-hover:translate-x-1 transition-transform"
+                            whileHover={{ x: 5 }}
+                          >
+                            <ChevronRight className="w-6 h-6" />
+                          </motion.div>
+                        </>
+                      )}
+                    </div>
                   </motion.button>
                   
-                  <p className="text-center text-sm text-gray-500 mt-3">
-                    Formunuz WhatsApp üzerinden gönderilecek ve uzman eğitmenlerimiz size dönüş yapacaktır.
-                  </p>
+                  {/* Alternative Contact Methods */}
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                    <motion.a
+                      href="tel:+905337035145"
+                      className="flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-blue-200 text-blue-700 font-semibold rounded-xl hover:bg-blue-50 hover:border-blue-300 transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Phone className="w-5 h-5" />
+                      <span>📞 Hızlı Arama</span>
+                    </motion.a>
+                    
+                    <motion.a
+                      href="https://wa.me/905337035145"
+                      className="flex items-center justify-center gap-2 px-6 py-3 bg-green-100 border-2 border-green-200 text-green-700 font-semibold rounded-xl hover:bg-green-200 hover:border-green-300 transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                      <span>💬 Direkt WhatsApp</span>
+                    </motion.a>
+                  </div>
+                  
+                  {/* Info Text */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="text-center mt-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl border border-blue-100"
+                  >
+                    <p className="text-sm text-gray-600 mb-2">
+                      🔒 <strong>Güvenli</strong> • 🚀 <strong>Hızlı</strong> • 📋 <strong>Kolay</strong>
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Formunuz WhatsApp üzerinden güvenle gönderilecek ve uzman eğitmenlerimiz 24 saat içinde size dönüş yapacaktır.
+                    </p>
+                  </motion.div>
                 </motion.div>
               </form>
             </div>
