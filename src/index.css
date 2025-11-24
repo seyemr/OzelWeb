@@ -1,0 +1,553 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans text-gray-900 bg-gray-50;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 focus:ring-blue-500;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
+  }
+  
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
+  }
+  
+  /* Services Carousel Styles */
+  .carousel-item {
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+    opacity: 0.8;
+  }
+  
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    opacity: 1;
+  }
+  
+  .carousel-indicators {
+    position: static !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .carousel-indicators [data-bs-target] {
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-indicators [data-bs-target]:hover {
+    background-color: #3b82f6 !important;
+    transform: scale(1.2);
+  }
+  
+  .carousel-indicators [data-bs-target].active {
+    background-color: #3b82f6 !important;
+  }
+}
+
+/* High contrast mode styles */
+.high-contrast {
+  @apply contrast-150 saturate-150;
+}
+
+/* Large text mode styles */
+.large-text * {
+  font-size: 1.25em !important;
+  line-height: 1.6 !important;
+}
+
+/* WhatsApp button animation */
+@keyframes pulse-whatsapp {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.whatsapp-pulse {
+  animation: pulse-whatsapp 2s infinite;
+}
+
+/* Additional service card animations and effects */
+.service-card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.service-card-glow:hover::before {
+  left: 100%;
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(-45deg, #0ea5e9, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation for icons */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.icon-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Trainer card specific animations */
+.trainer-card {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trainer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  border-radius: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.trainer-card:hover::before {
+  opacity: 1;
+}
+
+/* Avatar glow effect */
+.trainer-avatar {
+  position: relative;
+}
+
+.trainer-avatar::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: gradient-shift 3s ease infinite;
+  background-size: 400% 400%;
+}
+
+.trainer-card:hover .trainer-avatar::before {
+  opacity: 0.7;
+}
+
+/* Pulse animation for status badge */
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+}
+
+.status-badge {
+  animation: pulse-badge 2s infinite;
+}
+
+/* Text shimmer effect */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Appointment Form Styles */
+.form-field {
+  position: relative;
+}
+
+.form-field input:focus + .field-icon,
+.form-field select:focus + .field-icon,
+.form-field textarea:focus + .field-icon {
+  color: #0ea5e9;
+  transform: scale(1.1);
+}
+
+.form-field input:valid + .field-icon,
+.form-field select:valid + .field-icon,
+.form-field textarea:valid + .field-icon {
+  color: #10b981;
+}
+
+/* Custom select arrow */
+.custom-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+}
+
+/* Form validation animations */
+.error-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 20%, 40%, 60%, 80% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-3px);
+  }
+}
+
+/* Success animation */
+.success-bounce {
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Form focus states */
+.form-input:focus-within {
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+/* Gradient border animation */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(90deg, #f3f4f6, #f3f4f6) padding-box,
+              linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4) border-box;
+  border: 2px solid transparent;
+  border-radius: 12px;
+}
+
+.gradient-border:focus-within {
+  background: linear-gradient(90deg, #ffffff, #ffffff) padding-box,
+              linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4) border-box;
+  animation: gradient-shift 2s ease infinite;
+}
+
+/* Enhanced Accessibility Styles */
+
+/* Font size scaling with CSS custom property */
+:root {
+  --accessibility-font-scale: 1;
+}
+
+* {
+  font-size: calc(1em * var(--accessibility-font-scale));
+}
+
+/* High contrast mode enhancements */
+.high-contrast {
+  filter: contrast(150%) saturate(150%);
+}
+
+.high-contrast * {
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast a {
+  color: #0066cc !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast button {
+  border: 2px solid #000 !important;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.high-contrast button:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Keyboard navigation styles */
+.keyboard-navigation *:focus {
+  outline: 3px solid #0ea5e9 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px rgba(14, 165, 233, 0.2) !important;
+}
+
+.keyboard-navigation button:focus,
+.keyboard-navigation a:focus,
+.keyboard-navigation input:focus,
+.keyboard-navigation select:focus,
+.keyboard-navigation textarea:focus {
+  transform: scale(1.02);
+  z-index: 10;
+  position: relative;
+}
+
+/* Skip links for keyboard navigation */
+.skip-links {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  z-index: 1000;
+}
+
+.skip-links a {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-links a:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  background: #0ea5e9;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus indicators for interactive elements */
+.focus-visible:focus {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast media query support */
+@media (prefers-contrast: high) {
+  :root {
+    filter: contrast(150%);
+  }
+}
+
+/* Accessibility panel animations */
+.accessibility-panel-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.accessibility-panel-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.accessibility-panel-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.accessibility-panel-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Enhanced focus management */
+.keyboard-navigation .card:focus-within,
+.keyboard-navigation .btn:focus,
+.keyboard-navigation input:focus,
+.keyboard-navigation select:focus,
+.keyboard-navigation textarea:focus {
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Button accessibility enhancements */
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Form field accessibility */
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Link accessibility */
+a:not([class]) {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+
+/* Color accessibility indicators */
+.accessibility-indicator {
+  position: relative;
+}
+
+.accessibility-indicator::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid white;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.accessibility-indicator.active::after {
+  opacity: 1;
+}
+
+/* Toast notifications for accessibility changes */
+.accessibility-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #1f2937;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.accessibility-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}

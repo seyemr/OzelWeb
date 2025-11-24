@@ -1,0 +1,28 @@
+/* App.css - Custom styles for Göreneller project */
+
+/* Additional component styles can be added here */
+.bg-grid-gray-100 {
+  background-image: 
+    linear-gradient(rgba(156, 163, 175, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(156, 163, 175, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Smooth scrolling enhancement */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .whatsapp-pulse,
+  .accessibility-tools {
+    display: none !important;
+  }
+}
