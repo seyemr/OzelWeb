@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useContent } from '../contexts/ContentContext'
 import { 
   Heart, 
   Users, 
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react'
 
 const ModernAboutSection: React.FC = () => {
+  const { content } = useContent()
   const [activeTab, setActiveTab] = useState<'mission' | 'values' | 'history'>('mission')
 
   const stats = [
@@ -115,8 +117,8 @@ const ModernAboutSection: React.FC = () => {
             transition={{ delay: 0.4 }}
             className="text-5xl md:text-7xl font-black text-gray-800 mb-6"
           >
-            Kurumumuz <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Hakkında
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              {content.aboutTitle}
             </span>
           </motion.h2>
           
@@ -127,9 +129,7 @@ const ModernAboutSection: React.FC = () => {
             transition={{ delay: 0.6 }}
             className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
-            <span className="font-semibold text-blue-700">Göreneller Özel Eğitim ve Rehabilitasyon Merkezi</span> olarak, 
-            2010 yılından beri görme engelli bireylerin <span className="font-semibold text-purple-700">bağımsız yaşam</span> becerilerini 
-            geliştirme yolculuğunda onlara rehberlik ediyoruz.
+            {content.aboutDescription}
           </motion.p>
         </motion.div>
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AccessibilityProvider } from './contexts/AccessibilityContext'
 import { AuthProvider, useAuth } from './contexts/NewAuthContext'
@@ -17,7 +17,8 @@ import AppointmentForm from './components/AppointmentForm'
 import WhatsAppButton from './components/WhatsAppButton'
 import AccessibilityTools from './components/AccessibilityTools'
 import LoginPage from './components/LoginPage'
-import ModernSiteEditor from './components/ModernSiteEditor'
+import RegisterPage from './components/RegisterPage'
+import SiteInfoEditor from './components/SiteInfoEditor'
 import ProtectedRoute from './components/ProtectedRoute'
 
 // Import modern gallery component
@@ -25,19 +26,13 @@ import ModernGallerySection from './pages/Gallery'
 
 // App içeriği - Authentication state'ini kontrol eden component
 const AppContent = () => {
+  console.log('📱 AppContent component yüklendi')
+  
   const { isAuthenticated, isAdmin, loading } = useAuth()
   const [showAdminLogin, setShowAdminLogin] = useState(false)
-
-  // Debug: Auth durumunu konsola yazdır
-  console.log('🔍 Auth Debug:', { isAuthenticated, isAdmin, loading })
-
-  // Login başarılı olduktan sonra admin kontrolü yapınca admin paneline yönlendir
-  useEffect(() => {
-    if (isAuthenticated && isAdmin && !showAdminLogin) {
-      console.log('🎯 Admin olarak giriş yapıldı, yönlendiriliyor...')
-      // Admin paneline yönlendirme otomatik olarak yukarıdaki if kontrolü ile yapılıyor
-    }
-  }, [isAuthenticated, isAdmin, showAdminLogin])
+  const [showRegister, setShowRegister] = useState(false)
+  
+  console.log('🔐 Auth durumu:', { isAuthenticated, isAdmin, loading })
 
   // Loading durumunda basit loading ekranı göster
   if (loading) {
@@ -55,18 +50,36 @@ const AppContent = () => {
   if (isAuthenticated && isAdmin) {
     return (
       <ProtectedRoute requireAdmin>
-        <ModernSiteEditor onBackToSite={() => setShowAdminLogin(false)} />
+        <SiteInfoEditor onBackToSite={() => setShowAdminLogin(false)} />
       </ProtectedRoute>
     )
   }
 
-  // Register kaldırıldı - sadece login
+  // Register sayfası göster
+  if (showRegister) {
+    return (
+      <RegisterPage 
+        onRegisterSuccess={() => {
+          setShowRegister(false)
+          setShowAdminLogin(false)
+        }}
+        onSwitchToLogin={() => {
+          setShowRegister(false)
+          setShowAdminLogin(true)
+        }}
+      />
+    )
+  }
 
   // Login sayfası göster
   if (showAdminLogin) {
     return (
       <LoginPage 
         onLoginSuccess={() => setShowAdminLogin(false)}
+        onSwitchToRegister={() => {
+          setShowAdminLogin(false)
+          setShowRegister(true)
+        }}
       />
     )
   }
@@ -100,6 +113,8 @@ const AppContent = () => {
 }
 
 export default function App() {
+  console.log('🚀 App component yüklendi')
+  
   return (
     <Router>
       <AuthProvider>

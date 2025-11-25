@@ -5,27 +5,24 @@ import {
   Image, 
   Heart, 
   Users, 
-  Eye, 
   Play, 
   Pause, 
   SkipBack, 
   SkipForward,
   Sparkles,
-  Award,
-  Zap,
-  Shield,
   Grid,
   Maximize2,
   X,
   ChevronLeft,
   ChevronRight,
   Expand,
-  Minimize
+  Minimize,
+  Video,
+  PlayCircle
 } from 'lucide-react'
 
 const ModernGallerySection: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
-  const [activeCategory, setActiveCategory] = useState<string>('All')
   const [viewMode, setViewMode] = useState<'grid' | 'carousel'>('carousel')
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
@@ -39,7 +36,8 @@ const ModernGallerySection: React.FC = () => {
       alt: "Rehberlik ve yönlendirme eğitimi: Güvenli şekilde refakatçiyle hareket etme teknikleri",
       category: "Rehberlik Eğitimi",
       title: "Rehberle Yürüme Teknikleri",
-      description: "Profesyonel rehberlik eğitimi ile güvenli hareket öğrenme süreci"
+      description: "Profesyonel rehberlik eğitimi ile güvenli hareket öğrenme süreci",
+      type: "image"
     },
     {
       id: 2,
@@ -47,7 +45,18 @@ const ModernGallerySection: React.FC = () => {
       alt: "Bağımsız hareket eğitimi: Beyaz baston kullanımı ve mobilite teknikleri",
       category: "Mobilite", 
       title: "Bağımsız Hareket Eğitimi",
-      description: "Beyaz baston kullanımı ve bağımsız hareket teknikleri"
+      description: "Beyaz baston kullanımı ve bağımsız hareket teknikleri",
+      type: "image"
+    },
+    {
+      id: 9,
+      src: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+      alt: "Beyaz baston kullanımı video eğitimi: Temel tekniklerin uygulanması",
+      category: "Mobilite",
+      title: "Beyaz Baston Kullanımı - Video Eğitimi",
+      description: "Beyaz baston tekniklerinin adım adım video gösterimi",
+      type: "video",
+      duration: "2:30"
     },
     {
       id: 3,
@@ -55,7 +64,8 @@ const ModernGallerySection: React.FC = () => {
       alt: "Duvar takibi tekniği: Kapalı alanlarda yön bulma ve güvenli geçiş eğitimi",
       category: "Duvar Takibi",
       title: "Duvar Takibi Tekniği",
-      description: "İç mekanlarda güvenli hareket ve yön bulma becerileri"
+      description: "İç mekanlarda güvenli hareket ve yön bulma becerileri",
+      type: "image"
     },
     {
       id: 4,
@@ -63,7 +73,8 @@ const ModernGallerySection: React.FC = () => {
       alt: "Alçak ve yüksek kol koruma teknikleri: Engellerden korunma eğitimi",
       category: "Koruma Teknikleri",
       title: "Kol Koruma Teknikleri",
-      description: "Baş ve vücut koruması için gelişmiş koruma teknikleri"
+      description: "Baş ve vücut koruması için gelişmiş koruma teknikleri",
+      type: "image"
     },
     {
       id: 5,
@@ -71,7 +82,8 @@ const ModernGallerySection: React.FC = () => {
       alt: "Günlük yaşam becerileri: Mutfak güvenliği, kişisel bakım ve ev içi aktiviteler", 
       category: "Yaşam Becerileri",
       title: "Günlük Yaşam Becerileri",
-      description: "Bağımsız yaşam için temel beceriler ve ev içi güvenlik"
+      description: "Bağımsız yaşam için temel beceriler ve ev içi güvenlik",
+      type: "image"
     },
     {
       id: 6,
@@ -79,7 +91,8 @@ const ModernGallerySection: React.FC = () => {
       alt: "Aile eğitimi ve danışmanlık: Evde güvenli hareket ve rehberlik teknikleri",
       category: "Aile Eğitimi",
       title: "Aile Danışmanlığı",
-      description: "Ailelerin doğru yaklaşım ve destek teknikleri öğrenmesi"
+      description: "Ailelerin doğru yaklaşım ve destek teknikleri öğrenmesi",
+      type: "image"
     },
     {
       id: 7,
@@ -87,7 +100,8 @@ const ModernGallerySection: React.FC = () => {
       alt: "Braille okuma-yazma eğitimi: Dokunsal okuma becerilerinin geliştirilmesi",
       category: "Akademik Beceriler",
       title: "Braille Okuma-Yazma",
-      description: "Braille alfabe ve dokunsal okuma-yazma eğitimi"
+      description: "Braille alfabe ve dokunsal okuma-yazma eğitimi",
+      type: "image"
     },
     {
       id: 8,
@@ -95,15 +109,33 @@ const ModernGallerySection: React.FC = () => {
       alt: "Teknoloji eğitimi: Konuşan bilgisayar ve yardımcı teknolojiler",
       category: "Teknoloji",
       title: "Yardımcı Teknolojiler",
-      description: "Konuşan bilgisayar ve erişilebilir teknoloji kullanımı"
+      description: "Konuşan bilgisayar ve erişilebilir teknoloji kullanımı",
+      type: "image"
+    },
+    {
+      id: 10,
+      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      alt: "Rehberlik eğitimi video gösterimi: Güvenli hareket teknikleri",
+      category: "Rehberlik Eğitimi",
+      title: "Rehberlik Teknikleri - Video",
+      description: "Görme engelli bireylere rehberlik yapma tekniklerinin video ile gösterimi",
+      type: "video",
+      duration: "1:45"
+    },
+    {
+      id: 11,
+      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      alt: "Günlük yaşam becerileri video eğitimi: Mutfak güvenliği",
+      category: "Yaşam Becerileri",
+      title: "Mutfak Güvenliği - Video Eğitimi", 
+      description: "Görme engelli bireyler için mutfakta güvenli çalışma tekniklerinin video gösterimi",
+      type: "video",
+      duration: "3:15"
     }
   ]
 
-  const categories = ['All', ...Array.from(new Set(galleryImages.map(img => img.category)))]
-
-  const filteredImages = activeCategory === 'All' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeCategory)
+  // Kategori filtresi kaldırıldı, tüm medya öğeleri gösteriliyor
+  const filteredImages = galleryImages
 
   // Auto-play carousel functionality
   useEffect(() => {
@@ -127,10 +159,7 @@ const ModernGallerySection: React.FC = () => {
     setCurrentSlide(index)
   }
 
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category)
-    setCurrentSlide(0) // Reset slide when category changes
-  }
+
 
   // Touch handlers
   const minSwipeDistance = 50
@@ -162,11 +191,11 @@ const ModernGallerySection: React.FC = () => {
         switch (e.key) {
           case 'ArrowLeft':
             e.preventDefault()
-            prevSlide()
+            setCurrentSlide((prev) => (prev - 1 + filteredImages.length) % filteredImages.length)
             break
           case 'ArrowRight':
             e.preventDefault()
-            nextSlide()
+            setCurrentSlide((prev) => (prev + 1) % filteredImages.length)
             break
           case 'Escape':
             if (isFullscreen) setIsFullscreen(false)
@@ -187,7 +216,7 @@ const ModernGallerySection: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
-  }, [viewMode, isAutoPlaying, isFullscreen, selectedImage])
+  }, [viewMode, isAutoPlaying, isFullscreen, selectedImage, filteredImages.length])
 
   // Fullscreen API
   const toggleFullscreen = () => {
@@ -203,35 +232,7 @@ const ModernGallerySection: React.FC = () => {
     setIsFullscreen(!isFullscreen)
   }
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'All': return Grid
-      case 'Rehberlik Eğitimi': return Users
-      case 'Mobilite': return Eye
-      case 'Duvar Takibi': return Shield
-      case 'Koruma Teknikleri': return Award
-      case 'Yaşam Becerileri': return Heart
-      case 'Aile Eğitimi': return Users
-      case 'Akademik Beceriler': return Sparkles
-      case 'Teknoloji': return Zap
-      default: return Camera
-    }
-  }
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'All': return 'from-gray-500 to-gray-600'
-      case 'Rehberlik Eğitimi': return 'from-blue-500 to-blue-600'
-      case 'Mobilite': return 'from-green-500 to-green-600'
-      case 'Duvar Takibi': return 'from-purple-500 to-purple-600'
-      case 'Koruma Teknikleri': return 'from-pink-500 to-pink-600'
-      case 'Yaşam Becerileri': return 'from-orange-500 to-orange-600'
-      case 'Aile Eğitimi': return 'from-indigo-500 to-indigo-600'
-      case 'Akademik Beceriler': return 'from-violet-500 to-violet-600'
-      case 'Teknoloji': return 'from-cyan-500 to-cyan-600'
-      default: return 'from-gray-500 to-gray-600'
-    }
-  }
 
   return (
     <section 
@@ -297,57 +298,14 @@ const ModernGallerySection: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        {/* Modern Category Filter */}
-        <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8 }}
-          className="flex flex-wrap justify-center gap-3 mb-8"
-        >
-          {categories.map((category, index) => {
-            const Icon = getCategoryIcon(category)
-            const isActive = activeCategory === category
-            return (
-              <motion.button
-                key={category}
-                onClick={() => handleCategoryChange(category)}
-                className={`group relative px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 ${
-                  isActive
-                    ? `bg-gradient-to-r ${getCategoryColor(category)} text-white shadow-lg`
-                    : 'bg-white/60 backdrop-blur-sm text-gray-700 hover:bg-white/80 border border-gray-200'
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 + index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="flex items-center gap-2">
-                  <Icon className="w-4 h-4" />
-                  {category}
-                </span>
-                
-                {isActive && (
-                  <motion.div
-                    layoutId="activeFilter"
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-white/20 to-white/10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </motion.button>
-            )
-          })}
-        </motion.div>
+
 
         {/* View Mode Toggle */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 0.8 }}
           className="flex justify-center gap-4 mb-12"
         >
           <motion.button
@@ -410,19 +368,65 @@ const ModernGallerySection: React.FC = () => {
                         className="absolute inset-0 cursor-pointer group"
                         onClick={() => setSelectedImage(image.id)}
                       >
-                        {/* Background Image with Parallax Effect */}
-                        <motion.img
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-full object-cover"
-                          initial={{ scale: 1.2 }}
-                          animate={{ scale: 1 }}
-                          transition={{ duration: 1.2, ease: "easeOut" }}
-                        />
+                        {/* Background Media with Parallax Effect */}
+                        {image.type === 'video' ? (
+                          <motion.video
+                            src={image.src}
+                            className="w-full h-full object-cover"
+                            initial={{ scale: 1.2 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          />
+                        ) : (
+                          <motion.img
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-full object-cover"
+                            initial={{ scale: 1.2 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                          />
+                        )}
                         
                         {/* Dynamic Gradient Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20"></div>
+                        
+                        {/* Video Play Button and Duration */}
+                        {image.type === 'video' && (
+                          <>
+                            <motion.div
+                              className="absolute top-6 right-6 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.6 }}
+                            >
+                              {image.duration}
+                            </motion.div>
+                            <motion.div
+                              className="absolute inset-0 flex items-center justify-center"
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+                              whileHover={{ scale: 1.1 }}
+                            >
+                              <div className="relative">
+                                <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/30">
+                                  <PlayCircle className="w-10 h-10 text-white" />
+                                </div>
+                                <motion.div
+                                  className="absolute inset-0 rounded-full border-2 border-white/50"
+                                  animate={{ scale: [1, 1.2, 1] }}
+                                  transition={{ duration: 2, repeat: Infinity }}
+                                />
+                              </div>
+                            </motion.div>
+                          </>
+                        )}
                         
                         {/* Floating Particles Effect */}
                         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -457,9 +461,9 @@ const ModernGallerySection: React.FC = () => {
                             transition={{ delay: 0.4, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                             className="max-w-4xl"
                           >
-                            {/* Category Badge with Glow */}
+                            {/* Category Badge */}
                             <motion.span 
-                              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold bg-gradient-to-r ${getCategoryColor(image.category)} mb-6 shadow-2xl relative`}
+                              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold bg-blue-600/80 backdrop-blur-sm text-white mb-6 shadow-2xl relative"
                               whileHover={{ scale: 1.05, y: -2 }}
                               transition={{ type: "spring", stiffness: 400 }}
                             >
@@ -468,7 +472,7 @@ const ModernGallerySection: React.FC = () => {
                                 animate={{ opacity: [0.5, 1, 0.5] }}
                                 transition={{ duration: 2, repeat: Infinity }}
                               />
-                              {React.createElement(getCategoryIcon(image.category), { className: "w-4 h-4 relative z-10" })}
+                              <Camera className="w-4 h-4 relative z-10" />
                               <span className="relative z-10">{image.category}</span>
                             </motion.span>
                             
@@ -684,12 +688,35 @@ const ModernGallerySection: React.FC = () => {
                   onClick={() => setSelectedImage(image.id)}
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* Image */}
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                  {/* Media */}
+                  {image.type === 'video' ? (
+                    <>
+                      <video
+                        src={image.src}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        muted
+                        loop
+                        playsInline
+                      />
+                      {/* Video indicator */}
+                      <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
+                        <Video className="w-3 h-3" />
+                        {image.duration}
+                      </div>
+                      {/* Play button */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                          <PlayCircle className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
                   
                   {/* Glassmorphism overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -701,8 +728,8 @@ const ModernGallerySection: React.FC = () => {
                     <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
                       <h3 className="font-bold text-gray-800 mb-2 line-clamp-1">{image.title}</h3>
                       <p className="text-sm text-gray-600 mb-3 line-clamp-2">{image.description}</p>
-                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getCategoryColor(image.category)} text-white`}>
-                        {React.createElement(getCategoryIcon(image.category), { className: "w-3 h-3" })}
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-blue-600 text-white">
+                        <Camera className="w-3 h-3" />
                         {image.category}
                       </span>
                     </div>
@@ -795,16 +822,37 @@ const ModernGallerySection: React.FC = () => {
                 
                 return (
                   <>
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-auto max-h-[60vh] object-cover"
-                    />
+                    {image.type === 'video' ? (
+                      <video
+                        src={image.src}
+                        controls
+                        className="w-full h-auto max-h-[60vh] object-cover bg-black"
+                        autoPlay
+                      >
+                        Video oynatılamıyor.
+                      </video>
+                    ) : (
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-auto max-h-[60vh] object-cover"
+                      />
+                    )}
                     <div className="p-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{image.title}</h3>
-                      <p className="text-gray-600 mb-4">{image.description}</p>
-                      <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getCategoryColor(image.category)} text-white`}>
-                        {React.createElement(getCategoryIcon(image.category), { className: "w-4 h-4" })}
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-gray-800 mb-2">{image.title}</h3>
+                          <p className="text-gray-600">{image.description}</p>
+                        </div>
+                        {image.type === 'video' && image.duration && (
+                          <div className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full text-sm font-medium text-gray-700">
+                            <Video className="w-4 h-4" />
+                            {image.duration}
+                          </div>
+                        )}
+                      </div>
+                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-blue-600 text-white">
+                        <Camera className="w-4 h-4" />
                         {image.category}
                       </span>
                     </div>

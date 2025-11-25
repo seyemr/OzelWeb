@@ -663,30 +663,447 @@
   }
 }
 
-/* Appointment Form Styles */
-.form-field {
+/* Modern Minimalist Appointment Form Styles */
+
+/* Form Container */
+.appointment-form-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
+  overflow: hidden;
 }
 
-.form-field input:focus + .field-icon,
-.form-field select:focus + .field-icon,
-.form-field textarea:focus + .field-icon {
-  color: #0ea5e9;
-  transform: scale(1.1);
+.appointment-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.form-field input:valid + .field-icon,
-.form-field select:valid + .field-icon,
-.form-field textarea:valid + .field-icon {
-  color: #10b981;
+/* Modern Form Card */
+.modern-form-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Custom select arrow */
-.custom-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 12px center;
+.modern-form-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Form Header */
+.form-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.05));
+}
+
+/* Form Fields */
+.modern-form-field {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.modern-form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.modern-form-input,
+.modern-form-select,
+.modern-form-textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #111827;
+  background-color: #ffffff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.modern-form-input:focus,
+.modern-form-select:focus,
+.modern-form-textarea:focus {
+  border-color: #667eea;
+  background-color: #fafbff;
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.modern-form-input:hover,
+.modern-form-select:hover,
+.modern-form-textarea:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Input Icons */
+.form-input-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #9ca3af;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.modern-form-field:focus-within .form-input-icon {
+  color: #667eea;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Select Custom Styling */
+.modern-form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
   background-repeat: no-repeat;
-  background-size: 16px;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
+.modern-form-select:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23667eea' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Enhanced Modern Form Textarea with Full Keyboard Support */
+.modern-form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+  
+  /* Enhanced keyboard support */
+  -webkit-input-placeholder: inherit;
+  -moz-placeholder: inherit;
+  -ms-input-placeholder: inherit;
+  
+  /* Ensure all keys work properly */
+  -webkit-user-modify: read-write-plaintext-only;
+  -moz-user-modify: read-write;
+  
+  /* Input method editor support for international keyboards */
+  -webkit-input-security: auto;
+  -webkit-rtl-ordering: logical;
+  
+  /* Text selection and editing */
+  -webkit-user-drag: auto;
+  -moz-user-focus: normal;
+  
+  /* Character encoding support */
+  unicode-bidi: plaintext;
+  direction: ltr;
+  
+  /* Spell check and auto-correct */
+  -webkit-text-decorations-in-effect: none;
+  -webkit-text-stroke-width: 0px;
+  
+  /* Keyboard interaction fixes */
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  
+  /* Input composition support */
+  -webkit-composition-fill-color: transparent;
+  -webkit-composition-frame-color: transparent;
+  
+  /* Ensure space and special characters work */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  
+  /* Mobile keyboard support */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+/* Focus state for better keyboard interaction */
+.modern-form-textarea:focus {
+  /* Enhanced focus state */
+  -webkit-user-modify: read-write;
+  -moz-user-modify: read-write;
+  
+  /* Ensure keyboard events are processed */
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+/* Cross-browser keyboard compatibility */
+.modern-form-textarea::-webkit-input-placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.modern-form-textarea::-moz-placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.modern-form-textarea:-ms-input-placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+/* Error States */
+.modern-form-field.error .modern-form-input,
+.modern-form-field.error .modern-form-select,
+.modern-form-field.error .modern-form-textarea {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.modern-form-field.error .form-input-icon {
+  color: #ef4444;
+}
+
+.form-error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #ef4444;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: all 0.3s ease;
+}
+
+.modern-form-field.error .form-error-message {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Submit Button */
+.modern-submit-button {
+  position: relative;
+  width: 100%;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.modern-submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.modern-submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+}
+
+.modern-submit-button:hover::before {
+  left: 100%;
+}
+
+.modern-submit-button:active {
+  transform: translateY(0);
+}
+
+.modern-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Alternative Contact Buttons */
+.contact-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+  color: #374151;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-button:hover {
+  border-color: #667eea;
+  background: #fafbff;
+  color: #667eea;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-button.whatsapp {
+  border-color: #25d366;
+  color: #25d366;
+}
+
+.contact-button.whatsapp:hover {
+  background: #f0fdf4;
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.contact-button.phone {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.contact-button.phone:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* Info Cards */
+.info-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid #f3f4f6;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-card:hover {
+  border-color: #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.info-card-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--icon-color-from), var(--icon-color-to));
+}
+
+.info-card.blue {
+  --icon-color-from: #3b82f6;
+  --icon-color-to: #1d4ed8;
+}
+
+.info-card.purple {
+  --icon-color-from: #8b5cf6;
+  --icon-color-to: #7c3aed;
+}
+
+.info-card.pink {
+  --icon-color-from: #ec4899;
+  --icon-color-to: #db2777;
+}
+
+/* Loading State */
+.loading-spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animations */
+@keyframes shake {
+  0%, 20%, 40%, 60%, 80% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+}
+
+.error-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modern-form-card {
+    border-radius: 20px;
+    margin: 1rem;
+  }
+  
+  .modern-form-input,
+  .modern-form-select,
+  .modern-form-textarea {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .contact-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* Form validation animations */
@@ -1268,3 +1685,119 @@ a:not([class]) {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-2px); }
   }
+
+/* Enhanced Textarea Keyboard Support */
+textarea {
+  /* Text behavior */
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  
+  /* User interaction */
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+  
+  /* Text sizing and rendering */
+  -webkit-text-size-adjust: 100% !important;
+  -moz-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  
+  /* Keyboard and input support */
+  -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+  
+  /* Input method support */
+  -webkit-ime-mode: active !important;
+  -moz-ime-mode: active !important;
+  ime-mode: active !important;
+  
+  /* Composition support */
+  -webkit-composition: auto !important;
+  composition: auto !important;
+}
+
+/* Form textarea specific fixes */
+textarea[name="message"],
+textarea[data-testid="message-textarea"] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  line-height: 1.5 !important;
+  font-variant-ligatures: none !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-feature-settings: normal !important;
+  font-feature-settings: normal !important;
+  -webkit-writing-mode: horizontal-tb !important;
+  writing-mode: horizontal-tb !important;
+  direction: ltr !important;
+  unicode-bidi: normal !important;
+}
+
+/* Input method and composition fixes */
+textarea[name="message"]::-webkit-input-placeholder,
+textarea[data-testid="message-textarea"]::-webkit-input-placeholder {
+  font-family: inherit !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+textarea[name="message"]:-moz-placeholder,
+textarea[data-testid="message-textarea"]:-moz-placeholder {
+  font-family: inherit !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+textarea[name="message"]::-moz-placeholder,
+textarea[data-testid="message-textarea"]::-moz-placeholder {
+  font-family: inherit !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+/* Override any conflicting styles */
+.resize-none {
+  resize: none !important;
+}
+
+/* Force normal space behavior */
+textarea[data-testid="message-textarea"] {
+  -webkit-appearance: none !important;
+  -moz-appearance: textfield !important;
+  appearance: none !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Container for textarea to handle styling */
+.textarea-container {
+  position: relative;
+}
+
+.textarea-container textarea {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 120px !important;
+  padding: 16px !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  outline: none !important;
+  transition: all 0.3s ease !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
+
+.textarea-container textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}

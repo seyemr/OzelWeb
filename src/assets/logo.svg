@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <defs>
+    <!-- Gradients for the anchor -->
+    <linearGradient id="anchorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="50%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1e40af"/>
+    </linearGradient>
+    
+    <!-- Red gradient for wave -->
+    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#dc2626"/>
+      <stop offset="50%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="150" cy="80" r="70" fill="none" stroke="#e5e7eb" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Main anchor figure -->
+  <g transform="translate(150, 80)">
+    <!-- Anchor vertical post -->
+    <rect x="-3" y="-45" width="6" height="60" fill="url(#anchorGradient)" rx="2"/>
+    
+    <!-- Anchor ring at top -->
+    <circle cx="0" cy="-35" r="10" fill="none" stroke="url(#anchorGradient)" stroke-width="4"/>
+    
+    <!-- Left anchor arm -->
+    <path d="M-20 10 Q-25 15 -22 25 Q-18 30 -10 25 L-8 20 Q-12 15 -15 12 Z" 
+          fill="url(#anchorGradient)"/>
+    
+    <!-- Right anchor arm -->
+    <path d="M20 10 Q25 15 22 25 Q18 30 10 25 L8 20 Q12 15 15 12 Z" 
+          fill="url(#anchorGradient)"/>
+    
+    <!-- Left fluke -->
+    <path d="M-20 10 L-28 18 L-20 26 L-12 18 Z" 
+          fill="url(#anchorGradient)"/>
+    
+    <!-- Right fluke -->
+    <path d="M20 10 L28 18 L20 26 L12 18 Z" 
+          fill="url(#anchorGradient)"/>
+  </g>
+
+  <!-- Wave under the anchor -->
+  <path d="M80 130 Q110 125 150 130 Q190 135 220 130" 
+        stroke="url(#waveGradient)" stroke-width="4" fill="none"/>
+
+  <!-- Main text "göreneller" -->
+  <text x="150" y="165" text-anchor="middle" 
+        font-family="Arial, sans-serif" font-size="28" font-weight="bold" 
+        fill="#dc2626">göreneller</text>
+  
+  <!-- Subtitle -->
+  <text x="150" y="182" text-anchor="middle" 
+        font-family="Arial, sans-serif" font-size="11" font-weight="normal" 
+        fill="#6b7280">ÖZEL EĞİTİM &amp; REHABİLİTASYON MERKEZİ</text>
+</svg>

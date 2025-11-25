@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useContent } from '../contexts/ContentContext'
 import { 
   ArrowRight, 
   Eye, 
@@ -15,6 +16,8 @@ import {
 import backgroundImage from '../assets/back.png'
 
 const HeroSection: React.FC = () => {
+  const { content } = useContent()
+  
   return (
     <section 
       id="main-content" 
@@ -118,18 +121,15 @@ const HeroSection: React.FC = () => {
               className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-6"
             >
               <span className="block text-white drop-shadow-2xl">
-                Görme Engelliler
-              </span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
-                İçin Eğitim
+                {content.heroTitle}
               </span>
               <motion.span 
-                className="block text-white/80 text-4xl md:text-5xl lg:text-6xl font-bold mt-2"
+                className="block text-white/80 text-3xl md:text-4xl lg:text-5xl font-bold mt-2"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                Merkezi 🎓
+                {content.heroSubtitle}
               </motion.span>
             </motion.h1>
             
@@ -140,10 +140,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed max-w-2xl"
             >
-              <span className="font-semibold text-blue-300">Braille okuma-yazma</span>, 
-              <span className="font-semibold text-purple-300"> oryantasyon mobilite</span>, 
-              <span className="font-semibold text-pink-300"> günlük yaşam becerileri</span> ve 
-              <span className="font-semibold text-green-300"> teknoloji kullanımında</span> uzmanlaşmış eğitim programları.
+              {content.heroDescription}
             </motion.p>
 
             {/* Stats */}
@@ -213,8 +210,8 @@ const HeroSection: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Play className="w-5 h-5 group-hover:animate-bounce" />
-                <span>Hizmetleri Keşfet</span>
-                <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                <span>{content.heroButtonText}</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </motion.div>
           </div>

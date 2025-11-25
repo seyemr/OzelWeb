@@ -1,9 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, MessageCircle, Clock, Users, Award, Heart } from 'lucide-react'
+import { MapPin, Phone, MessageCircle, Clock, Users, Award, Heart, Settings } from 'lucide-react'
 import logoImage from '../assets/profil.jpg'
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onAdminClick?: () => void
+}
+
+const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -233,6 +237,27 @@ const Footer: React.FC = () => {
               <span>🗺️ Google Maps'te Konumumuzu Görün</span>
             </motion.a>
           </motion.div>
+
+          {/* Admin Access */}
+          {onAdminClick && (
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.9 }}
+              className="text-center mb-8"
+            >
+              <motion.button
+                onClick={onAdminClick}
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white/80 hover:text-white font-medium py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Settings className="w-4 h-4" />
+                <span>Yönetim Paneli</span>
+              </motion.button>
+            </motion.div>
+          )}
 
           {/* Copyright */}
           <motion.div

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Eye, Heart, Shield, Sparkles } from 'lucide-react'
+import { Menu, X, Eye, Heart, Shield, Sparkles, Settings } from 'lucide-react'
 import logoImage from '../assets/profil.jpg'
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onAdminClick?: () => void
+}
+
+const Header: React.FC<HeaderProps> = ({ onAdminClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('anasayfa')
+  const [clickCount, setClickCount] = useState(0)
+  const [clickTimer, setClickTimer] = useState<number | null>(null)
 
   useEffect(() => {
     const sections = ['anasayfa', 'hakkimizda', 'galeri', 'hizmetler', 'egitmenler', 'iletisim']
@@ -65,7 +71,37 @@ const Header: React.FC = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const handleLogoClick = () => {
+    // Clear previous timer
+    if (clickTimer) {
+      clearTimeout(clickTimer)
+    }
 
+    const newClickCount = clickCount + 1
+
+    if (newClickCount === 3) {
+      // Triple click detected - open admin panel
+      if (onAdminClick) {
+        onAdminClick()
+      }
+      setClickCount(0)
+      setClickTimer(null)
+    } else {
+      setClickCount(newClickCount)
+      
+      // Set timer to reset click count after 1 second
+      const timer = setTimeout(() => {
+        if (newClickCount === 1) {
+          // Single click - scroll to top
+          scrollToTop()
+        }
+        setClickCount(0)
+        setClickTimer(null)
+      }, 1000)
+      
+      setClickTimer(timer)
+    }
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -158,7 +194,7 @@ const Header: React.FC = () => {
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 120 }}
             className="group flex items-center gap-4 cursor-pointer relative"
-            onClick={scrollToTop}
+            onClick={handleLogoClick}
           >
             {/* Logo container with glassmorphism effect */}
             <div className="relative">
@@ -277,6 +313,33 @@ const Header: React.FC = () => {
                 </motion.a>
               )
             })}
+            
+            {/* Admin Button */}
+            <motion.button
+              onClick={onAdminClick}
+              className="relative px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 bg-gradient-to-r from-gray-500/20 to-gray-600/20 backdrop-blur-sm border border-white/30 text-gray-700 hover:from-blue-500/20 hover:to-purple-500/20 hover:text-gray-800 shadow-lg ml-2"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 + menuItems.length * 0.1 }}
+              whileHover={{ 
+                y: -2,
+                scale: 1.05,
+                boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                Admin
+              </span>
+              
+              {/* Hover effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 rounded-xl opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+            </motion.button>
           </motion.div>
 
           {/* Modern Mobile Menu Button */}
@@ -406,6 +469,43 @@ const Header: React.FC = () => {
                       </motion.a>
                     )
                   })}
+                  
+                  {/* Admin Button for Mobile */}
+                  <motion.button
+                    initial={{ opacity: 0, x: -30, scale: 0.8 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -30, scale: 0.8 }}
+                    transition={{ 
+                      delay: menuItems.length * 0.1,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    onClick={() => {
+                      setIsMenuOpen(false)
+                      onAdminClick?.()
+                    }}
+                    className="group relative flex items-center gap-3 py-4 px-5 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-gray-500/20 to-gray-600/20 border border-white/30 text-gray-700 hover:from-blue-500/20 hover:to-purple-500/20 hover:text-gray-800 shadow-lg mt-2"
+                    whileHover={{ 
+                      scale: 1.02, 
+                      x: 5,
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Admin icon */}
+                    <div className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 bg-gradient-to-br from-gray-500 to-gray-600 text-white group-hover:from-blue-500 group-hover:to-purple-600">
+                      <Settings className="w-4 h-4" />
+                    </div>
+                    
+                    <span className="flex-1">Admin Paneli</span>
+                    
+                    {/* Hover effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent rounded-2xl opacity-0"
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </motion.button>
                 </div>
                 
                 {/* Decorative elements */}
